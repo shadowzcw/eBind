@@ -1,5 +1,4 @@
 ﻿var eBind = eBind || {};
-
 eBind.Table = function (element, options) {
     this.options = options;
     this.$element = $(element);
@@ -7,10 +6,12 @@ eBind.Table = function (element, options) {
 };
 
 eBind.Table.buildSource = function (options) {
-    if (options.source.indexOf('?') == -1)
+    if (options.source.indexOf('?') == -1) {
         options.source += '?';
-    else
+    }
+    else {
         options.source = options.source.replace(/&?(pageindex|pagesize|sort|desc|_)=([^&]*)/gi, "");
+    }
     options.source += '&pagesize=' + options.pagesize + '&pageindex=' + options.pageindex;
     options.source += '&sort=' + options.sort + '&desc=' + options.desc;
     options.source = options.source.replace(/undefined/g, '');
@@ -36,11 +37,11 @@ eBind.Table.prototype = {
         $body = $body.length > 0 ? $body : $('<tbody></tbody>');
         $body.empty().append(result).appendTo($table);
     },
-    bind: function (template) {
-        var options = this.options;
+    bind: function (option) {
+        var options = $.extend(this.options, typeof option == "object" && option);
         this.page(options.pageindex, options.pagesize);
         this.sort(options.sort, options.desc);
-        if (template) options.template = template;
+        option && option.template && (options.template = option.template);
         var $table = this.$element;
         var that = this;
         $.ajax({
@@ -93,8 +94,11 @@ eBind.Table.prototype = {
             var $this = $(this),
                 data = $this.data('bindTable'),
                 options = $.extend({}, $.fn.bindTable.defaults, $(this).data(), typeof option == "object" && option);
-            if (!data) $this.data('bindTable', (data = new eBind.Table(this, options)));
-            return data;
+            if (!data) {
+                $this.data('bindTable', (data = new eBind.Table(this, options)));
+                return data;
+            }
+            return data.bind(options);
         });
     };
 

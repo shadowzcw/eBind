@@ -3,7 +3,11 @@
 eBind.Form = function (element, model) {
     var t = this.$element = $(element);
     $('input,textarea,select', t).each(function () {
-        var value = model[$(this).attr('name').replace('e', '')];
+        var vname = $(this).attr('name');
+        var value;
+        if (vname != undefined) {
+            value = model[$(this).attr('name').replace('e', '')];
+        }
         if (value) {
             var data = $(this).data('bindElement');
             if (!data) new eBind.Element(this, value);
