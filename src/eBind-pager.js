@@ -10,7 +10,7 @@ eBind.Pager.getPagerHtml = function (pageIndex, pageSize, recordCount, linkText)
     if (pageSize == 0)
         return "";
 
-    if (recordCount == 0)
+    if (recordCount == 0 || recordCount == undefined)
         return "";
 
     var pageCount = parseInt(recordCount / pageSize);

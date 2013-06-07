@@ -6,7 +6,7 @@ eBind.List = function (element, options) {
 
 eBind.List.prototype = new eBind.Table();
 eBind.List.prototype.append = function (result) {
-    this.$element.append(result);
+    this.$element.empty().append(result);
 };
 
 
@@ -18,8 +18,11 @@ eBind.List.prototype.append = function (result) {
             var $this = $(this),
                 data = $this.data('bindList'),
                 options = $.extend({}, $.fn.bindList.defaults, $(this).data(), typeof option == "object" && option);
-            if (!data) $this.data('bindList', (data = new eBind.List(this, options)));
-            return data;
+            if (!data) {
+                $this.data('bindList', (data = new eBind.List(this, options)));
+                return data;
+            }
+            return data.bind(options);
         });
     };
 
