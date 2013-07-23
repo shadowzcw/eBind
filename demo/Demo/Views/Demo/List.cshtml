@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>
+    绑定列表2</h3>
+<div class="bs-docs-example">
+    <form id="frm" class="form-horizontal">
+    
+    <div class="control-group">
+        <label class="control-label" for="eselect_one">
+            eselect_one</label>
+        <div class="controls">
+            <select id="eselect_one" name="eselect_one">
+            </select>
+        </div>
+    </div>    
+    </form>
+</div>
+<h4>
+    1.声明式</h4>
+<pre class="prettyprint linenums">
+    var option = {
+        source: '/demo/getlist',
+        template: '{for user in list}&lt;tr&gt;&lt;td&gt;${user.UserId}&lt;/td&gt;&lt;td&gt;${user.UserName}&lt;/td&gt;&lt;/tr&gt;{/for}',
+    };
+    $('#eselect_one').bindList(option);
+</pre>
+<h4>
+    2.标记式</h4>
+<pre class="prettyprint linenums">
+    &lt;select id="eselect_one" name="eselect_one"&gt;&lt;/select&gt;
+</pre>
+<pre class="prettyprint linenums">
+     &lt;textarea cols="1" data-for="eselect_one" id="template" rows="1" style="display: none;"&gt;
+        {for user in list}
+            &lt;option value="${user.UserId}"&gt;                              
+                ${user.UserName}             
+            &lt;/option&gt;
+        {/for}
+    &lt;/textarea&gt;
+</pre>
+<pre class="prettyprint linenums">
+     var options = {
+        source: '/demo/getlist',     
+    };
+    $('#list').bindList(options);
+</pre>
+@section scripts
+{
+    <script src="../../Scripts/eBind/trimpath-template.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-table.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-sort.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-pager.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-list.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('#navmenus').children().eq(1).addClass('active');
+    </script>
+    <script type="text/javascript">                
+        //绑定下拉
+        var option = {
+            source: '/demo/getlist',
+            template: '{for user in list}<option value="${user.UserId}">${user.UserName}</option>{/for}'
+        };
+        $('#eselect_one').bindList(option);
+        
+    </script>
+}
+

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>eBind Demo</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../Content/docs.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/bootstrap/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/prettify.css" rel="stylesheet" type="text/css" />    
+    <link href="../../Content/site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @RenderPage("Top.cshtml")
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <script src="../../Scripts/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <script src="../../Scripts/prettify.js" type="text/javascript"></script>
+    @RenderSection("scripts")
+    <script>
+        $(function () {
+            window.prettyPrint && prettyPrint();
+        });
+    </script>
+</body>
+</html>

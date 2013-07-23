@@ -1,0 +1,88 @@
+﻿@using Demo
+@using Rogrand.Common
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    绑定表单</h3>
+<div class="bs-docs-example">
+    <form id="frm" class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="etext">
+            etext</label>
+        <div class="controls">
+            <input type="text" id="etext" name="etext" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="etextarea">
+            etextarea</label>
+        <div class="controls">
+            <textarea rows="2" cols="1" id="etextarea" name="etextarea"></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="eselect_one">
+            eselect_one</label>
+        <div class="controls">
+            <select id="eselect_one" name="eselect_one">
+                <option value="1">zhangsan</option>
+                <option value="2">lisi</option>
+                <option value="3">wangwu</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="eselect_muli">
+            eselect_muli</label>
+        <div class="controls">
+            <select id="eselect_muli" multiple="multiple" name="eselect_muli">
+                <option value="1">zhangsan</option>
+                <option value="2">lisi</option>
+                <option value="3">wangwu</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="echeckbox">
+            echeckbox</label>
+        <div class="controls">
+            <input type="checkbox" id="echeckbox" name="echeckbox" value="1" />
+            <input type="checkbox" id="Checkbox1" name="echeckbox" value="2" />
+            <input type="checkbox" id="Checkbox2" name="echeckbox" value="3" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="eradio">
+            eradio</label>
+        <div class="controls">
+            <input type="radio" id="eradio" name="eradio" value="1" />
+            <input type="radio" id="Radio1" name="eradio" value="2" />
+            <input type="radio" id="Radio2" name="eradio" value="3" />
+        </div>
+    </div>
+    </form>
+</div>
+<pre class="prettyprint linenums">
+     var model = @Html.Raw(ViewData["model"].ToJson()) || {};
+     $('#frm').bindForm(model);
+</pre>
+@section scripts
+{
+    <script src="../../Scripts/eBind/trimpath-template.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-table.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-sort.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-pager.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-list.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-element.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-form.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('#navmenus').children().eq(2).addClass('active');
+    </script>
+    <script type="text/javascript">
+        var model = @Html.Raw(ViewData["model"].ToJson()) || {};
+        $('#frm').bindForm(model);
+        
+    </script>
+}

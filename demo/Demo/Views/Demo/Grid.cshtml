@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Grid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h3>
+    绑定列表</h3>
+<div class="bs-docs-example">
+    <table id="list" class="table table-bordered table-striped" data-sort="UserId" data-desc="0" data-pagesize="3">
+        <thead>
+            <tr>
+                <th>
+                    <a href="#" data-sort="UserId">ID</a>
+                </th>
+                <th>
+                    <a href="#" data-sort="UserName">Name</a>
+                </th>
+            </tr>
+        </thead>
+    </table>
+    <textarea cols="1" data-for="list" id="template" rows="1" style="display: none;">
+    {for user in list}
+    <tr>
+      <td>
+        ${user.UserId}
+      </td>
+      <td>
+        ${user.UserName}
+      </td>
+    </tr>
+    {/for}
+  </textarea>
+</div>
+<h4>1.声明式</h4>
+<pre class="prettyprint linenums">
+     var options = {
+        source: '/demo/getlist',
+        template: '{for user in list}&lt;tr&gt;&lt;td&gt;${user.UserId}&lt;/td&gt;&lt;td&gt;${user.UserName}&lt;/td&gt;&lt;/tr&gt;{/for}',
+        pagesize: 3,
+        field: 'UserId',
+        desc: true
+    };
+    $('#list').bindTable(options);
+</pre>
+<h4>2.标记式</h4>
+<pre class="prettyprint linenums">
+     &lt;table id="list" class="table table-bordered" data-sort="UserId" data-desc="0" data-pagesize="2">
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;
+                    &lt;a href="#" data-sort="UserId"&gt;ID&lt;/a&gt;
+                &lt;/th&gt;
+                &lt;th&gt;
+                    &lt;a href="#" data-sort="UserName"&gt;Name&lt;/a&gt;
+                &lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+    &lt;/table>
+</pre>
+
+<pre class="prettyprint linenums">
+     &lt;textarea cols="1" data-for="list" id="template" rows="1" style="display: none;"&gt;
+        {for user in list}
+            &lt;tr&gt;
+              &lt;td&gt;
+                ${user.UserId}
+              &lt;/td&gt;
+              &lt;td&gt;
+                ${user.UserName}
+              &lt;/td&gt;
+            &lt;/tr&gt;
+        {/for}
+    &lt;/textarea&gt;
+</pre>
+<pre class="prettyprint linenums">
+     var options = {
+        source: '/demo/getlist',  
+        template: $('#template').val(),      
+    };
+    $('#list').bindTable(options);
+</pre>
+@section scripts
+{
+    <script src="../../Scripts/eBind/trimpath-template.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-table.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-sort.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-pager.js" type="text/javascript"></script>
+    <script src="../../Scripts/eBind/eBind-list.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $('#navmenus').children().eq(0).addClass('active');
+    </script>
+    <script type="text/javascript">
+        var options = {
+            source: '/demo/getlist'
+        };
+        $('#list').bindTable(options);
+    </script>
+}
