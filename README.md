@@ -4,6 +4,7 @@ eBind是一个前端数据绑定Javascript扩展库，支持Grid绑定、List绑
 
 使用方法
 =====
+引用所有脚本：eBind-template.js、eBind-table.js、eBind-sort.js、eBind-pager.js、eBind-element.js、eBind-form.js。
 支持声明式、标记式两种使用方式，标记字段约定如下：
 data-sort:排序字段
 data-desc:排序方式
